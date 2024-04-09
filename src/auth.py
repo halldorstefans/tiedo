@@ -5,7 +5,7 @@ from src.logger import logger
 auth_bp = Blueprint('auth',__name__)
 
 @auth_bp.route('/auth/register', methods=['POST'])
-def receive_gps_data():
+def receive_auth_registration():
     vehicle_id = request.json['vehicle_id']
 
     token = DB.create_token(vehicle_id)

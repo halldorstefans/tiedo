@@ -22,3 +22,7 @@ CREATE TABLE IF NOT EXISTS token (
 
 -- Optional: Create an index on token_hash for faster retrieval
 CREATE INDEX IF NOT EXISTS idx_token_hash ON token (token_hash);
+
+-- Optional: Insert tokens for test purpose
+INSERT INTO token (vehicle_id, token_hash) VALUES ('12345', 'your_api_token') ON CONFLICT(vehicle_id) DO UPDATE SET token_hash=excluded.token_hash;
+INSERT INTO token (vehicle_id, token_hash) VALUES ('54321', 'some_api_token') ON CONFLICT(vehicle_id) DO UPDATE SET token_hash=excluded.token_hash;

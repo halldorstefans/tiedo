@@ -19,7 +19,7 @@ def receive_gps_data():
     vehicle_id = DB.receive_gps_data(request.json)
 
     if vehicle_id != auth_vehicle_id:
-        logger.warning('Unauthorized access to /api/gps')
+        logger.warning('Unauthorized access for the vehicle')
         return jsonify({"error": "Unauthorized"}), 401
 
     logger.info('Received GPS data for vehicle_id: %s', vehicle_id)
@@ -37,14 +37,14 @@ def get_gps_data(vehicle_id):
         return jsonify({"error": "Unauthorized"}), 401
 
     if vehicle_id != auth_vehicle_id:
-        logger.warning('Unauthorized access to /api/gps')
+        logger.warning('Unauthorized access for the vehicle')
         return jsonify({"error": "Unauthorized"}), 401
     
     data = DB.get_gps_data(vehicle_id)
     
     if not data:
         logger.warning('No GPS data found for vehicle_id: %s', vehicle_id)
-        return jsonify({"message": "No GPS data found for the vehicle"}), 404
+        return jsonify({"error": "No GPS data found for the vehicle"}), 404
     
 
     gps_data = []
