@@ -1,7 +1,7 @@
 # Import necessary libraries
 import unittest
 import json
-from unittest.mock import patch, Mock, MagicMock
+from unittest.mock import patch
 from src import create_app
 from src.database import DB
 

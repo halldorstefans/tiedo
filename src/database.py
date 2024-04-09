@@ -64,14 +64,14 @@ class DB:
         cursor.execute('''
             INSERT INTO token (vehicle_id, token_hash)
             VALUES (?, ?)
-            ON CONFLICT(vehicle_id) 
+            ON CONFLICT(vehicle_id)
             DO UPDATE SET token_hash=excluded.token_hash;
         ''', (vehicle_id, token))
         conn.commit()
         conn.close()
 
         return token
-    
+
     def get_token(token):
         conn = sqlite3.connect(DB.DATABASE)
         cursor = conn.cursor()
