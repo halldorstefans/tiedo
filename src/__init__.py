@@ -1,11 +1,9 @@
 from flask import Flask
-from os import path
-import logging
-import logging.config
 from src.database import DB
 from src.health import health_bp
 from src.gps import gps_bp
 from src.auth import auth_bp
+
 
 def create_app():
     app = Flask(__name__)

@@ -2,6 +2,7 @@ import sqlite3
 import hashlib
 import secrets
 
+
 class DB:
     def init(db_path, db_schema):
         DB.DATABASE = db_path
@@ -18,13 +19,12 @@ class DB:
     def verify_schema():
         conn = sqlite3.connect(DB.DATABASE)
         cursor = conn.cursor()
-        cursor.execute("""SELECT count(*) FROM sqlite_master WHERE type='table' 
+        cursor.execute("""SELECT count(*) FROM sqlite_master WHERE type='table'
         AND name='gps_data'; """)
         data = cursor.fetchone()
         conn.close()
 
         return data[0]
-
 
     def get_gps_data(vehicle_id):
         conn = sqlite3.connect(DB.DATABASE)
@@ -36,7 +36,6 @@ class DB:
         conn.close()
 
         return data
-
 
     def receive_gps_data(content):
         vehicle_id = content['vehicle_id']
@@ -55,7 +54,7 @@ class DB:
         conn.close()
 
         return vehicle_id
-    
+
     def create_token(vehicle_id):
         token = hashlib.sha256(secrets.token_bytes(32)).hexdigest()
 

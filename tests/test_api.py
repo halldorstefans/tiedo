@@ -1,11 +1,12 @@
 # Import necessary libraries
 import unittest
 import json
-from unittest.mock import patch
+from unittest.mock import patch, Mock, MagicMock
 from src import create_app
 from src.database import DB
 
 api = create_app()
+
 
 class TelematicsServiceTestCase(unittest.TestCase):
 
@@ -65,7 +66,6 @@ class TelematicsServiceTestCase(unittest.TestCase):
         response_data = json.loads(response.data)
         self.assertEqual(response_data['error'], 'Unauthorized')
 
-
     def test_get_gps_data(self):
         headers = {'Authorization': 'your_api_token'}
         data = {
@@ -108,6 +108,7 @@ class TelematicsServiceTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         response_data = json.loads(response.data)
         self.assertEqual(response_data['status'], 'Healthy')
+
 
 if __name__ == '__main__':
     unittest.main()

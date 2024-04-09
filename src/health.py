@@ -2,10 +2,11 @@ from flask import Blueprint, jsonify
 from src.database import DB
 from src.logger import logger
 
-health_bp = Blueprint('health',__name__)
+health_bp = Blueprint('health', __name__)
 
 # Configure health check
 is_healthy = False
+
 
 @health_bp.route('/health', methods=['GET'])
 def health_check():
